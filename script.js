@@ -5,26 +5,104 @@ const goods = [
     { title: 'Shoes', price: 250, description: 'The best shoes in the world!', img: 'img/Shoes.jpg' },
 ];
 
-
-const $goodsList = document.querySelector('.goods-list');
-  
-const renderGoodsItem = ({ title = '', price = 0, description = '', img = '' }) => {
-    return `<div class="goods-item">
-    <img src="${img}" alt="${title}">
-    <h3>${title}</h3>
-    <p>${price} р</p>
-    <p>${description}</p>
-    <button>Купить</button>
-    </div>`;
+class Products {
+	products = goods;
+	constructor(selector) {
+		this.pageAdd(selector, ProductItem);
+	}
+	pageAdd(selector, item) {
+		const product = new item();
+		const productsList = this.products.reduce((pList, p) => pList += product.render(p), "");
+		document.querySelector(selector).innerHTML = `<h2>Общая стоимость: ${this.priceSum()} р</h2>` + productsList;
+	}
+	//Метод для сложения цен
+	priceSum() {
+		return this.products.reduce((sum, n) => sum += n.price, 0);
+	}
 };
-  
-const renderGoodsList = (list = goods) => {
-    let goodsList = list.reduce((pList, p) => pList += renderGoodsItem(p), "");
-    //let goodsList = list.map(
-    //         item => renderGoodsItem(item)
-    //     );
+class ProductItem {
+	constructor() {
+	}
+	render(p) {
+		return`<div class="goods-item">
+        <img src="${p.img || "img/noproduct.png"}" alt="${p.title}">
+        <h3>${p.title}</h3>
+        <p>${p.price} р</p>
+        <p>${p.description}</p>
+        <button>Купить</button>
+        </div>`;
+	}
+	
+};
 
-    $goodsList.insertAdjacentHTML('beforeend', goodsList);
+class Cart {
+	constructor(selector) {
+	}
+	deleteElement() {}
+	addElement() {}
+};
+class CartItem {
+	constructor() {
+	}
+	render(p) {
+		return`<div class="cart-item">
+				<img src="${p.img || "img/noproduct.png"}" alt="img">
+				<h3>${p.title}</h3>
+				<p>${p.price} р</p>
+				<button class="btn-cart-item">Удалить</button>
+			</div>`;
+	}
+};
+const catalog = new Products(".goods-list");
+
+
+
+
+//Задание про гамбургеры
+class Hamburger {
+	price = 0;
+	calory = 0;
+	constructor(size = "маленький", stuffing = "с сыром"){
+
+		if (size === "маленький") {
+			this.price += 50;
+			this.calory += 20;
+		}
+		if (size === "большой") {
+			this.price += 100;
+			this.calory += 40;
+		}
+		if (stuffing === "с сыром") {
+			this.price += 10;
+			this.calory += 20;
+		}
+		if (stuffing === "с салатом") {
+			this.price += 20;
+			this.calory += 5;
+		}
+		if (stuffing === "с кортофелем") {
+			this.price += 15;
+			this.calory += 10;
+		}
+	}
+
+	addSpice() {
+		this.price += 15;
+		this.calory += 0;
+	}
+
+	addSouse() {
+		this.price += 20;
+		this.calory += 5;
+	}
+
 }
-  
-renderGoodsList();
+const burger = new Hamburger("большой", "с салатом");
+burger.addSouse();
+burger.addSpice();
+console.log(burger.price); // 155
+console.log(burger.calory); // 50
+
+
+
+
