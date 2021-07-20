@@ -13,11 +13,12 @@ body {
 }
 header {
 	background-color: rgb(23, 26, 26);
-	font-size: 2em;
+	/*font-size: 2em;
 	font-weight: bolder;
 	color: white;
 	flex: 0 0 auto;
 	text-transform: uppercase;
+	position: relative;*/
 }
 footer {
 	background-color:rgb(23, 26, 26);
@@ -28,6 +29,9 @@ footer {
 main {
 	flex: 1 0 auto;
 }
+section {
+	display: block;
+}
 .cart-button {
 	display: block;
 	margin: 10px;
@@ -35,7 +39,7 @@ main {
 	font-weight: bold;
 	font-size: 20px;
 }
-img {
+.img-products {
 	display: block;
 	margin: 0 auto;
 	width: auto;
@@ -44,6 +48,7 @@ img {
 .goods-list {
 	display: flex;
 	justify-content: space-evenly;
+	flex-wrap: wrap;
 }
 .goods-item {
 	background-color: white;
@@ -55,4 +60,38 @@ img {
 	overflow: hidden;
 	text-align: center;
 }
+.mini-cart {
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.5);
+	right: 0;
+	max-height: 90%;
+	overflow: auto;
+	color: white;
+}
+.cart-item {
+	display: flex;
+	justify-content: space-between;
+	height: 100px;
+	display: flex;
+	padding: 1px;
+}
+.cart-info {
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	line-height: 0;
+}
+.img-cart {
+	height: 100px;
+	width: 100px;
+	overflow: hidden;
+	object-fit: cover;
+}
 
+
+.invisible {
+	display: none;
+}
