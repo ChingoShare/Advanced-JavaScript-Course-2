@@ -1,22 +1,39 @@
-const goods = [
-    { title: 'Shirt', price: 150 },
-    { title: 'Socks', price: 50 },
-    { title: 'Jacket', price: 350 },
-    { title: 'Shoes', price: 250 },
-];
+import Products from "./components/Products.js";
+import ProductItem from "./components/ProductItem.js";
+import Cart from "./components/Cart.js";
+import CartItem from "./components/CartItem.js";
+import ProductService from "./services/ProductService.js";
+import UserEventsService from "./services/UserEventsService.js";
 
-const $goodsList = document.querySelector('.goods-list');
-  
-const renderGoodsItem = ({ title, price }) => {
-    return `<div class="goods-item"><h3>${title}</h3><p>${price}</p></div>`;
-};
-  
-const renderGoodsList = (list = goods) => {
-    let goodsList = list.map(
-            item => renderGoodsItem(item)
-        ).join('\n');
+const catalog = new Products(".goods-list");
+const cart = new Cart(".mini-cart");
+const productService = new ProductService("../products.json");
+const userEventsService = new UserEventsService();
 
-    $goodsList.insertAdjacentHTML('beforeend', goodsList);
-}
-  
-renderGoodsList();
+productService.getProducts().then((response) => {
+        response.forEach(newGood => {
+            catalog.add(new ProductItem(newGood));
+        });
+        catalog.renderProducts();
+    })
+
+
+userEventsService.click("add-element", function($element) {
+    let find = catalog._products.find(el => el._id === $element.dataset.id);
+    cart.addElement(new CartItem(find));
+    cart.renderCart();
+})
+userEventsService.click("delete-element", function($element) {
+    let find = cart._cart.find(el => el._id === $element.dataset.id);
+    cart.deleteElement(new CartItem(find));
+    cart.renderCart();
+})
+userEventsService.click("cart-button", function($element) {
+    const $cart = document.querySelector(".mini-cart")
+    if(!$cart.classList.contains('invisible')) {
+        $cart.classList.add("invisible")
+    } 
+    else {
+        $cart.classList.remove("invisible")
+    }
+})

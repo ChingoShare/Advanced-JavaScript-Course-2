@@ -1,0 +1,30 @@
+[
+	{
+		"title": "Shirt",
+		"price": 150,
+		"description":"The best shirt in the world!",
+		"img": "img/Shirt.jpg",
+		"id": "1"
+	},
+	{
+		"title": "Socks",
+		"price": 50,
+		"description": "The best socks in the world!",
+		"img": "img/Socks.jpg",
+		"id": "2"
+	},
+	{
+		"title": "Jacket",
+		"price": 350,
+		"description": "The best jacket in the world!",
+		"img": "img/Jacket.jpg",
+		"id": "3"
+	},
+	{
+		"title": "Shoes",
+		"price": 250,
+		"description": "The best shoes in the world!",
+		"img": "img/Shoes.jpg",
+		"id": "4"
+	}
+]
