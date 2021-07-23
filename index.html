@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>eShop</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header>
-    <button class="cart-button" type="button">Корзина</button>
-  </header>
-  <main>
-    <div class="goods-list"></div>
-  </main>
-  
-  <script src="script.js"></script>
+	<p class="change-text"></p>
+	<button class="change-btn">Смена апострофов и ковычкек</button>
+	<form action="#">
+		<span class="error invisible">*провертьте правильность заполнения!</span>
+		<label>Имя: <input class="name" type="text" placeholder="Только буквы"></label>
+		<label>Телефон: <input class="tel" type="tel" placeholder="Вид: +7(000)000-0000"></label>
+		<label>Email: <input class="email" type="email" placeholder="E-mail"></label>
+		<label>Текст: <textarea class="text"></textarea></label>
+		<button class="submit" type="submit">Отправить</button>
+	</form>
+	<script type="module" src="script.js"></script>
 </body>
+
 </html>
