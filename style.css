@@ -1,0 +1,35 @@
+.change-text {
+	font-family: sans-serif;
+	font-size: 1em;
+	color: white;
+	background-color: rgb(45, 56, 56);
+}
+
+.change-btn {
+	font-size: 1em;
+}
+
+form {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	margin-top: 30px;
+}
+
+label {
+	padding: 10px;
+}
+.error {
+	top: -1em;
+	position: absolute;
+	color: red;
+}
+.error-form {
+	outline: solid red;
+}
+.invisible {
+	display: none;
+}
